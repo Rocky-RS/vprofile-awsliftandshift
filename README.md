@@ -1,35 +1,100 @@
-# vProfile AWS Lift & Shift
+# AWS Lift and Shift – vProfile Application
 
-This repository contains the AWS cloud migration (Lift & Shift) project for the vProfile web application.
+This project demonstrates a complete **Lift and Shift migration** of the **vProfile multi-tier Java application** to AWS.
 
-## Goal
-Migrate the existing vProfile application from local/on-prem setup to AWS Cloud using EC2 infrastructure without refactoring the application.
+The goal is to migrate an on-premise style architecture to AWS **without changing application code**, using EC2, AMIs, Auto Scaling Groups, and Application Load Balancer.
 
-## Architecture (Phase-wise)
-Phase 1: Single EC2 Lift & Shift  
-Phase 2: Two-tier architecture  
-Phase 3: Load Balancer + Auto Scaling Group  
-Phase 4: DNS + HTTPS  
-Phase 5: Managed AWS Services (RDS, ElastiCache, Amazon MQ)
+---
 
-## Stack
-- AWS EC2 (Ubuntu)
-- Nginx
-- Tomcat
-- MySQL
-- RabbitMQ
-- Memcached
-- GitHub Automation
-- Bash Scripts
+## 🧱 Application Architecture
 
-## Flow
-Source Repo → Automation Repo → AWS EC2 → Public Access
+**vProfile is a 5-tier application:**
 
-## Repositories
-- Source: vprofile-manual-setup  
-- Automation: vprofile-automation  
-- Cloud: vprofile-awsliftandshift
+- Nginx – Web server / Reverse proxy
+- Apache Tomcat – Application server
+- MySQL – Database
+- Memcached – Cache
+- RabbitMQ – Messaging queue
 
-## Status
-Phase 1: In Progress
+---
 
+## ☁️ AWS Services Used
+
+- Amazon EC2
+- Amazon AMI
+- Auto Scaling Group (ASG)
+- Application Load Balancer (ALB)
+- Target Groups
+- Security Groups
+- EBS Volumes
+- IAM (basic usage)
+
+---
+
+## 🚀 Project Phases
+
+### Phase 1 – Manual Lift & Shift
+- Launched EC2 instances for each component
+- Installed and configured services manually
+- Deployed vProfile application
+- Verified application access
+
+### Phase 2 – AMI Creation
+- Created custom AMI from application EC2
+- Enabled Tomcat auto-start
+- Validated AMI by launching new instance
+
+### Phase 3 – High Availability & Scalability
+- Created Launch Template using custom AMI
+- Configured Auto Scaling Group
+- Integrated Application Load Balancer
+- Performed Instance Refresh
+- Verified application via ALB DNS
+
+### Phase 4 – Cost Optimization & Cleanup
+- Terminated unused EC2 instances
+- Deleted unused Load Balancers
+- Removed old AMIs and snapshots
+- Stopped non-required services
+
+---
+
+## 🧪 Validation
+
+- Application login page accessible via ALB
+- Auto Scaling instances healthy
+- Tomcat running automatically on launch
+- Database and backend services reachable
+
+---
+
+## 📸 Screenshots
+
+Screenshots are available in the `screenshots/` directory.
+
+---
+
+## 🧹 Cleanup Strategy
+
+To avoid unnecessary AWS charges:
+- Stop or terminate EC2 instances when not in use
+- Delete unused Load Balancers
+- Remove old AMIs and snapshots
+- Monitor EBS volumes
+
+---
+
+## 🧠 Key Learnings
+
+- Real-world Lift and Shift migration
+- EC2 → AMI → ASG workflow
+- Load Balancer integration
+- AWS cost awareness
+- Production-style deployment flow
+
+---
+
+## 👨‍💻 Author
+
+**Rahul Guleria**  
+DevOps | AWS | Linux | Automation
