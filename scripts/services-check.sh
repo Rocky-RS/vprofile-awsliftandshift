@@ -1,16 +1,21 @@
 #!/bin/bash
 
-echo "Checking Tomcat..."
-systemctl is-active tomcat || echo "Tomcat NOT running"
+echo "========== Service Status Check =========="
 
-echo "Checking MySQL..."
-systemctl is-active mysql || echo "MySQL NOT running"
+echo -n "Nginx: "
+systemctl is-active nginx || echo "NOT running"
 
-echo "Checking Memcached..."
-systemctl is-active memcached || echo "Memcached NOT running"
+echo -n "Tomcat: "
+systemctl is-active tomcat || echo "NOT running"
 
-echo "Checking RabbitMQ..."
-systemctl is-active rabbitmq-server || echo "RabbitMQ NOT running"
+echo -n "MySQL: "
+systemctl is-active mysql || echo "NOT running"
 
-echo "Service check completed"
+echo -n "Memcached: "
+systemctl is-active memcached || echo "NOT running"
+
+echo -n "RabbitMQ: "
+systemctl is-active rabbitmq-server || echo "NOT running"
+
+echo "========== Check completed =========="
 
