@@ -96,3 +96,5 @@ Planned to put ALB in front of ASG
 
 - Architecture diagram: `docs/architecture-diagram.md`
 
+- Security & cost considerations: `docs/security-cost.md`
+
