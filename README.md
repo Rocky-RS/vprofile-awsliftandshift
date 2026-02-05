@@ -98,3 +98,7 @@ Planned to put ALB in front of ASG
 
 - Security & cost considerations: `docs/security-cost.md`
 
+- Interview Q&A: `docs/interview-qna.md`
+
+- 2-minute project pitch: `docs/project-pitch.md`
+
