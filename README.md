@@ -91,3 +91,5 @@ Planned to put ALB in front of ASG
 - Architecture details: `docs/architecture.md`
 - Role-based bootstrap scripts: `scripts/`
 
+- AMI & Auto Scaling design: `docs/ami-asg.md`
+
