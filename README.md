@@ -1,106 +1,130 @@
-🔁 AWS Lift & Shift — WHAT WE DID 
-🎯 Objective 
+# 🔁 AWS Lift & Shift Project – vProfile Application
 
-Migrate the vProfile legacy Java application from a traditional setup to AWS, without changing application code.
+## 📌 Overview
+This project demonstrates a **real-world AWS Lift & Shift migration** of a
+legacy Java-based **vProfile application** from a traditional environment to AWS.
 
-That is exactly what Lift & Shift means.
+The migration preserves the existing application architecture and avoids
+application code changes, focusing instead on **automation, scalability,
+and cloud readiness**.
 
-🟢 PHASE 1: Understanding the Application 
+---
 
-We first understood that vProfile is a multi-tier app:
+## 🎯 Objective
+- Migrate a legacy multi-tier application to AWS
+- Preserve existing architecture (Lift & Shift)
+- Improve reliability and scalability
+- Automate infrastructure provisioning
 
-Web: Nginx
+---
 
-App: Tomcat
+## 🏗 Application Architecture
 
-Database: MySQL
+The vProfile application consists of the following tiers:
 
-Cache: Memcached
+| Tier | Technology | Deployment |
+|----|----|----|
+| Web | Nginx | EC2 |
+| App | Tomcat | EC2 |
+| Database | MySQL | EC2 |
+| Cache | Memcached | EC2 |
+| Messaging | RabbitMQ | EC2 |
 
-Messaging: RabbitMQ
+Each tier runs on a **separate EC2 instance**, reflecting a traditional
+enterprise architecture.
 
-👉 This is important because Lift & Shift means all these must work together exactly as before.
+---
 
-🟢 PHASE 2: Initial AWS Setup (What you already had)
+## 🚀 Migration Phases
 
-Before we cleaned things, you had already:
+### 🟢 Phase 1: Application Understanding
+- Analyzed the multi-tier architecture
+- Identified service dependencies
+- Planned Lift & Shift strategy without code changes
 
-Created separate EC2 instances:
+### 🟢 Phase 2: Initial AWS Setup
+- Deployed each tier on a separate EC2 instance
+- Verified inter-service communication
+- Validated application functionality on AWS
 
-vprofile-db → MySQL
+### 🟢 Phase 3: Automation
+- Created role-based shell scripts for:
+  - App bootstrap
+  - Database setup
+  - Memcached setup
+  - RabbitMQ setup
+- Ensured reproducible and consistent deployments
 
-App EC2 → Tomcat + Nginx
+### 🟢 Phase 4: Scalability
+- Created an AMI from a working App EC2
+- Built a Launch Template
+- Created an Auto Scaling Group (ASG)
+- Planned Application Load Balancer (ALB) integration
 
-Memcached EC2
+---
 
-RabbitMQ EC2
+## ⚙️ Automation Scripts
 
-App EC2 was configured to talk to DB EC2
+Scripts are organized by EC2 role:
 
-Application was working in AWS
+```text
+scripts/
+├── app/
+├── db/
+├── memcached/
+├── rabbitmq/
+└── common/
 
-👉 This was a classic multi-EC2 Lift & Shift (very common in real companies).
-
-🟢 PHASE 3: App Tier Automation (What we did together)
-
-Together, we focused on automation and reproducibility.
-
-We:
-
-Wrote shell scripts for:
-
-App bootstrap
-
-DB setup
-
-Service checks
-
-Cleanup
-
-Tested everything locally on Ubuntu
-
-Verified:
-
-All services start correctly
-
-App opens in browser
-
-Login works
-
-👉 This step is huge — many people skip this and fail later.
-
-🟢 PHASE 4: Moving Toward Scalability (ASG + AMI)
-
-Then we moved to cloud-native scaling, which is where Lift & Shift becomes real.
-
-We did:
-
-Created an AMI from the working App EC2
-
-Created a Launch Template using that AMI
-
-Created an Auto Scaling Group (ASG)
-
-Planned to put ALB in front of ASG
-
-👉 Goal: scale the application tier, not the database (very realistic).
+Each script is executed only on its respective EC2 instance.
 
 
-## 📄 Documentation
 
-- Architecture details: `docs/architecture.md`
 
-- Role-based bootstrap scripts: `scripts/`
+📄 Documentation
 
-- AMI & Auto Scaling design: `docs/ami-asg.md`
+Architecture overview & diagram: docs/architecture-diagram.md
 
-- Architecture diagram: `docs/architecture-diagram.md`
+AMI & Auto Scaling design: docs/ami-asg.md
 
-- Security & cost considerations: `docs/security-cost.md`
+Application Load Balancer design: docs/alb.md
 
-- Interview Q&A: `docs/interview-qna.md`
+Security & cost considerations: docs/security-cost.md
 
-- 2-minute project pitch: `docs/project-pitch.md`
+Interview Q&A: docs/interview-qna.md
 
-- Application Load Balancer design: `docs/alb.md`
+2-minute project pitch: docs/project-pitch.md
 
+
+
+🔐 Security & Cost Highlights
+
+Backend services are private and VPC-isolated
+
+Security Groups restrict inter-tier access
+
+Lift & Shift prioritizes stability over optimization
+
+Future migration path to managed AWS services documented
+
+
+
+🧠 Key Learnings
+
+Real-world Lift & Shift migrations are incremental
+
+Automation is critical before scaling
+
+Not all tiers should be scaled immediately
+
+Cloud modernization does not always mean refactoring
+
+
+
+
+🏁 Conclusion
+
+This project mirrors how enterprises migrate legacy applications to AWS:
+safely, incrementally, and without breaking production systems.
+
+It demonstrates hands-on experience with AWS infrastructure,
+automation, and cloud-native scaling principles.
