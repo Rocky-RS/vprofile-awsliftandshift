@@ -84,3 +84,10 @@ Created an Auto Scaling Group (ASG)
 Planned to put ALB in front of ASG
 
 👉 Goal: scale the application tier, not the database (very realistic).
+
+
+## 📄 Documentation
+
+- Architecture details: `docs/architecture.md`
+- Role-based bootstrap scripts: `scripts/`
+
